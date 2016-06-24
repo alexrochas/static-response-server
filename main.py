@@ -1,20 +1,26 @@
 from flask import Flask, request
+from functools import wraps
 
 app = Flask(__name__)
+
+
+def file_not_found_error_handling(func):
+    @wraps(func)
+    def func_wrapper(*args, **kwargs):
+        try:
+            return func(*args, **kwargs)
+        except FileNotFoundError:
+            return open('app/error/404.html').read()
+    return func_wrapper
 
 
 # From http://flask.pocoo.org/snippets/57/
 @app.route('/', defaults={'path': ''})
 @app.route('/<path:path>')
+@file_not_found_error_handling
 def catch_all(path):
-    file_name = path.split('/')[-1]
-    formatted_file_name = _format_file_name(file_name, request.method)
-    response = open('app/' + formatted_file_name).read()
+    response = open('app/' + path + '.' + request.method.lower()).read()
     return response
-
-
-def _format_file_name(file_name, method):
-    return file_name + '.' + method.lower()
 
 
 if __name__ == '__main__':
