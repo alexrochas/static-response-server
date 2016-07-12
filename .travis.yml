@@ -6,3 +6,5 @@ python:
 branches:
   only:
     - master
+script:
+    - nosetests -v
