@@ -7,3 +7,5 @@ branches:
     - master
 script:
     - nosetests -v --with-coverage --cover-package=main
+after_success:  
+    - coveralls push
