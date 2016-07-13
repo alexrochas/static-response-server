@@ -6,4 +6,4 @@ branches:
   only:
     - master
 script:
-    - nosetests -v
+    - nosetests -v --with-coverage --cover-package=main
