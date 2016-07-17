@@ -1,5 +1,6 @@
 import unittest
-from main import app
+
+from server.__init__ import app
 
 
 class TestMain(unittest.TestCase):
