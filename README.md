@@ -42,13 +42,15 @@ And you will be served from the file ```/app/index.html.get``` with content
     </body>
 </html>
 ```
+Make requests to http://127.0.0.1/person/123/contact from a route with format ```/person/:id/contact``` and you will be served from a index file inside directory named **any**. So, the folder path that this request will access is ```app/person/any/contact/index.html.get``` (in case the request be GET).
 
 ## Release History
 
 * 0.0.1
     * Work in progress
+    * Add support to routes with wildcards
 
 
 ## Meta
 
-Alex Rocha - [about.me](about.me/alex.rochas)
+Alex Rocha - [about.me](http://about.me/alex.rochas)
