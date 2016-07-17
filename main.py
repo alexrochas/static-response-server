@@ -30,6 +30,9 @@ def sanitize_path(func):
     @wraps(func)
     def func_wrapper(*args, **kwargs):
         path = kwargs['path']
+        for s in str.split(path, '/'):
+            if not os.path.exists(BASE_DIR + '/' + app_home + s + '/') and not os.path.isfile(BASE_DIR + '/' + app_home + s + '.' + request.method.lower()):
+                path = path.replace(s, "any")
         path = path + 'index.html' if not path else path
         path = path + 'index.html' if path.endswith('/') else path
         path = path + '/index.html' if '.' not in path else path

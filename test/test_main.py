@@ -33,4 +33,17 @@ class TestMain(unittest.TestCase):
 
         self.assertEqual("200 OK", response.status)
 
+    def test_should_return_file_when_access_wildcard_route(self):
+        self.test_main = app.test_client()
+        response = self.test_main.get('/person/wildcard/')
+
+        self.assertEqual("200 OK", response.status)
+
+    def test_should_return_file_when_access_two_levels_wildcard_route(self):
+        self.test_main = app.test_client()
+        response = self.test_main.get('/person/wildcard/wildcard')
+
+        self.assertEqual("200 OK", response.status)
+
+
 
