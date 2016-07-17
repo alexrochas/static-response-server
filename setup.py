@@ -1,22 +1,24 @@
 from setuptools import setup
-from pip.req import parse_requirements
-
-# parse_requirements() returns generator of pip.req.InstallRequirement objects
-install_reqs = parse_requirements('requirements.txt', session=False)
-
-# reqs is a list of requirement
-# e.g. ['django==1.5.1', 'mezzanine==1.4.6']
-reqs = [str(ir.req) for ir in install_reqs]
 
 setup(name='static_response_server',
-      version='0.1',
+      version='0.2',
       description='Static response server for REST pocs',
       url='https://github.com/alexrochas/static-response-server',
       author='Alex Rocha',
       author_email='alex.rochas@yahoo.com.br',
       license='MIT',
       packages=['server'],
-      install_requires=reqs,
+      install_requires=['click==6.6',
+                        'coverage==4.1',
+                        'coveralls==1.1',
+                        'docopt==0.6.2',
+                        'Flask==0.11.1',
+                        'itsdangerous==0.24',
+                        'Jinja2==2.8',
+                        'MarkupSafe==0.23',
+                        'nose==1.3.7',
+                        'requests==2.10.0',
+                        'Werkzeug==0.11.10'],
       entry_points={
           'console_scripts': ['static-response-server=server.server:start'],
       },
