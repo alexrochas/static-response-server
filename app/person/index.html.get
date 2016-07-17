@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Static page</title>
+</head>
+<body>
+
+<h1>Static Response Server</h1>
+<p>This page is a response GET to Index url.</p>
+
+</body>
+</html>

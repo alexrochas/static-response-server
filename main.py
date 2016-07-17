@@ -26,13 +26,24 @@ def file_not_found_error_handling(func):
     return func_wrapper
 
 
+def sanitize_path(func):
+    @wraps(func)
+    def func_wrapper(*args, **kwargs):
+        path = kwargs['path']
+        path = path + 'index.html' if not path else path
+        path = path + 'index.html' if path.endswith('/') else path
+        path = path + '/index.html' if '.' not in path else path
+        kwargs.update({'path': path})
+        return func(*args, **kwargs)
+    return func_wrapper
+
+
 # From http://flask.pocoo.org/snippets/57/
 @app.route('/', defaults={'path': ''})
 @app.route('/<path:path>')
 @file_not_found_error_handling
+@sanitize_path
 def catch_all(path):
-    if not path or path.endswith('/'):
-        path = 'index.html'
     response = open(BASE_DIR + '/' + app_home + path + '.' + request.method.lower()).read()
     return response
 

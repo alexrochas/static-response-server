@@ -21,4 +21,16 @@ class TestMain(unittest.TestCase):
 
         self.assertEqual("200 OK", response.status)
 
+    def test_should_return_dir_index_when_access_deeper_route_ending_with_slash(self):
+        self.test_main = app.test_client()
+        response = self.test_main.get('/person/')
+
+        self.assertEqual("200 OK", response.status)
+
+    def test_should_return_dir_index_when_access_deeper_route_ending_without_format(self):
+        self.test_main = app.test_client()
+        response = self.test_main.get('/person')
+
+        self.assertEqual("200 OK", response.status)
+
 
