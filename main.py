@@ -31,6 +31,8 @@ def file_not_found_error_handling(func):
 @app.route('/<path:path>')
 @file_not_found_error_handling
 def catch_all(path):
+    if not path or path.endswith('/'):
+        path = 'index.html'
     response = open(BASE_DIR + '/' + app_home + path + '.' + request.method.lower()).read()
     return response
 
