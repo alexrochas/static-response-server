@@ -5,15 +5,18 @@ from functools import wraps
 
 app = Flask(__name__)
 BASE_DIR = os.path.dirname(__file__)
+DEFAULT_SERVER_PORT = 5000
 
 
 def parse_args():
     parser = argparse.ArgumentParser(description="Static Response Server")
     parser.add_argument('-a', '--appHome', help='home for you app files', default=BASE_DIR + '/app')
+    parser.add_argument('-p', '--serverPort', help='port to run server', default=DEFAULT_SERVER_PORT)
     args, unkown = parser.parse_known_args()
     return args
 
 app_home = parse_args().appHome + '/'
+server_port = parse_args().serverPort
 
 
 def file_not_found_error_handling(func):
@@ -53,4 +56,4 @@ def catch_all(path):
 
 
 if __name__ == '__main__':
-    app.run()
+    app.run(port=server_port)
