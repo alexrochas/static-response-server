@@ -17,7 +17,7 @@ setup(name='static_response_server',
                         'Jinja2==2.8',
                         'MarkupSafe==0.23',
                         'nose==1.3.7',
-                        'requests==2.10.0',
+                        'requests==2.20.0',
                         'Werkzeug==0.11.10'],
       entry_points={
           'console_scripts': ['static-response-server=server.server:start'],
